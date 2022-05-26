@@ -1,19 +1,50 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+
+      <!-- <el-button @click="handleClick">element的按钮</el-button>
+      <el-button @click="showModal">打开modal</el-button> -->
+
+      <router-view></router-view>
+
     </div>
-    <router-view/>
   </div>
 </template>
+
+<script>
+import Modal from "./components/modal";
+import ElButton from "element-ui/packages/button/src/button.vue";
+
+
+export default {
+  components: {
+    ElButton
+  },
+  data() {
+    return {
+      drawerVisible: false,
+    };
+  },
+  methods: {
+    handleClick() {
+      this.drawerVisible = !this.drawerVisible;
+    },
+    beforeClose(done) {
+      console.warn("close");
+      done();
+    },
+    showModal() {
+      Modal.show();
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 
